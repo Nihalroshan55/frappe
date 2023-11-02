@@ -33,6 +33,11 @@ from frappe.utils import (
 	sbool,
 	split_emails,
 )
+<<<<<<< HEAD
+=======
+from frappe.utils.deprecations import deprecated
+from frappe.utils.verified_command import get_signed_params
+>>>>>>> d5d0dfb58b (perf: Reuse SMTP connection when flushing email queue)
 
 
 class EmailQueue(Document):
@@ -186,6 +191,7 @@ class EmailQueue(Document):
 
 
 @task(queue="short")
+@deprecated
 def send_mail(email_queue_name, smtp_server_instance: SMTPServer = None):
 	"""This is equivalent to EmailQueue.send.
 
