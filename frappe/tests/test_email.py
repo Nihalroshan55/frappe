@@ -52,16 +52,30 @@ class TestEmail(FrappeTestCase):
 		self.test_email_queue(send_after=1)
 		from frappe.email.queue import flush
 
+<<<<<<< HEAD
 		flush(from_test=True)
 		email_queue = frappe.db.sql("""select name from `tabEmail Queue` where status='Sent'""", as_dict=1)
+=======
+		flush()
+		email_queue = frappe.db.sql(
+			"""select name from `tabEmail Queue` where status='Sent'""", as_dict=1
+		)
+>>>>>>> 4e318a0280 (fix: Abort flushing email queue if >50% fail.)
 		self.assertEqual(len(email_queue), 0)
 
 	def test_flush(self):
 		self.test_email_queue()
 		from frappe.email.queue import flush
 
+<<<<<<< HEAD
 		flush(from_test=True)
 		email_queue = frappe.db.sql("""select name from `tabEmail Queue` where status='Sent'""", as_dict=1)
+=======
+		flush()
+		email_queue = frappe.db.sql(
+			"""select name from `tabEmail Queue` where status='Sent'""", as_dict=1
+		)
+>>>>>>> 4e318a0280 (fix: Abort flushing email queue if >50% fail.)
 		self.assertEqual(len(email_queue), 1)
 		queue_recipients = [
 			r.recipient
