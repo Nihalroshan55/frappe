@@ -425,8 +425,11 @@ after_job = [
 	"frappe.monitor.stop",
 	"frappe.utils.file_lock.release_document_locks",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	"frappe.email.smtp.close_open_smtp_connections",
+=======
+>>>>>>> 089985e53b (feat: frappe.job local for reading job info)
 	"frappe.utils.telemetry.flush",
 >>>>>>> a4382fda5a (fix: Automatically close SMTP connections on exit)
 ]
