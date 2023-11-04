@@ -424,6 +424,11 @@ before_job = [
 after_job = [
 	"frappe.monitor.stop",
 	"frappe.utils.file_lock.release_document_locks",
+<<<<<<< HEAD
+=======
+	"frappe.email.smtp.close_open_smtp_connections",
+	"frappe.utils.telemetry.flush",
+>>>>>>> a4382fda5a (fix: Automatically close SMTP connections on exit)
 ]
 
 extend_bootinfo = [

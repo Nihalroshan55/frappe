@@ -208,10 +208,16 @@ class SendMailContext:
 		smtp_server_instance: SMTPServer = None,
 	):
 		self.queue_doc: EmailQueue = queue_doc
+<<<<<<< HEAD
 
 		# if smtp_server_instance is passed, then retain smtp session
 		# Note: smtp session will have to be manually closed
 		self.retain_smtp_session = bool(smtp_server_instance)
+=======
+		self.email_account_doc = queue_doc.get_email_account()
+
+		self.smtp_server: SMTPServer = smtp_server_instance or self.email_account_doc.get_smtp_server()
+>>>>>>> a4382fda5a (fix: Automatically close SMTP connections on exit)
 
 		self.smtp_server: SMTPServer = smtp_server_instance
 		self.sent_to_atleast_one_recipient = any(
@@ -228,6 +234,7 @@ class SendMailContext:
 		return self
 
 	def __exit__(self, exc_type, exc_val, exc_tb):
+<<<<<<< HEAD
 		exceptions = [
 			smtplib.SMTPServerDisconnected,
 			smtplib.SMTPAuthenticationError,
@@ -247,6 +254,10 @@ class SendMailContext:
 			}
 		elif exc_type:
 			update_fields = {"error": trace}
+=======
+		if exc_type:
+			update_fields = {"error": "".join(traceback.format_tb(exc_tb))}
+>>>>>>> a4382fda5a (fix: Automatically close SMTP connections on exit)
 			if self.queue_doc.retry < get_email_retry_limit():
 				update_fields.update(
 					{
